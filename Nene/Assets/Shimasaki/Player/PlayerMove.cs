@@ -12,16 +12,17 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private PlayerStatus playerStatus;
 
+    /// <summary>
+    /// ステージマネージャー
+    /// </summary>
+    private StageManager stageManager;
+
     // Start is called before the first frame update
     private void Start()
     {
+        // インスタンス取得
         playerStatus = PlayerStatus.Instance;
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
+        stageManager = StageManager.Instance;
     }
 
     private void FixedUpdate()
@@ -34,32 +35,77 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void MoveProcess()
     {
+        // 座標取得
         var pos = transform.position;
 
-        // 前
+        Vector3 moveDirection = Vector3.zero;
+
+        // 上
         if(Input.GetKey(KeyCode.W))
         {
             pos.z += playerStatus.MoveSpeed * Time.deltaTime;
+
+            moveDirection.z += 1.0f;
+
+            // 上に限界の場合修正
+            if(pos.z >= stageManager.ArrayHeight -1.0f)
+            {
+                pos.z = stageManager.ArrayHeight -1.0f;
+            }
         }
 
-        // 後
+        // 下
         if (Input.GetKey(KeyCode.S))
         {
             pos.z -= playerStatus.MoveSpeed * Time.deltaTime;
+
+            moveDirection.z -= 1.0f;
+
+            // 下に限界の場合修正
+            if (pos.z <= 0.0f)
+            {
+                pos.z = 0.0f;
+            }
         }
 
         // 左
         if (Input.GetKey(KeyCode.A))
         {
             pos.x -= playerStatus.MoveSpeed * Time.deltaTime;
+
+            moveDirection.x -= 1.0f;
+
+            // 左に限界の場合修正
+            if (pos.x <= 0.0f)
+            {
+                pos.x = 0.0f;
+            }
         }
 
         // 右
         if (Input.GetKey(KeyCode.D))
         {
             pos.x += playerStatus.MoveSpeed * Time.deltaTime;
+
+            moveDirection.x += 1.0f;
+
+            if (pos.x >= stageManager.ArrayWidth -1.0f)
+            {
+                pos.x = stageManager.ArrayWidth -1.0f;
+            }
         }
 
+        // 移動方向を取得
+        Vector2 moveVector = new(moveDirection.x, moveDirection.z);
+
+        // 移動している場合正規化して
+        // 移動方向に代入
+        if(moveDirection != Vector3.zero)
+        {
+            playerStatus.MoveVector = moveVector;
+        }
+
+        // 座標反映
         transform.position = pos;
     }
 }

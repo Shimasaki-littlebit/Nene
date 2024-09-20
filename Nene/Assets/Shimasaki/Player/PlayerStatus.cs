@@ -49,6 +49,20 @@ public class PlayerStatus : SingletonMonoBehaviour<PlayerStatus>
         get =>moveSpeed;
     }
 
+    /// <summary>
+    /// ˆÚ“®‚µ‚½•ûŒü
+    /// </summary>
+    private Vector2 moveVector;
+
+    /// <summary>
+    /// ˆÚ“®‚µ‚½•ûŒüæ“¾
+    /// </summary>
+    public Vector2 MoveVector
+    {
+        get => moveVector;
+        set => moveVector = value;
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -60,7 +74,8 @@ public class PlayerStatus : SingletonMonoBehaviour<PlayerStatus>
     // Start is called before the first frame update
     private void Start()
     {
-       
+        // ‰Šú‰»
+       moveVector = Vector2.up;
     }
 
 
