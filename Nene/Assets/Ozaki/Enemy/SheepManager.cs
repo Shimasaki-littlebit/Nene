@@ -1,42 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using Sheep;
 
-public enum SheepStates
+namespace Sheep
 {
-    /// <summary>
-    /// 空
-    /// </summary>
-    None,
-    /// <summary>
-    /// 歩き
-    /// </summary>
-    Walk,
-    /// <summary>
-    /// 見つける
-    /// </summary>
-    Found,
-    /// <summary>
-    /// 止まる
-    /// </summary>
-    Stop,
-    /// <summary>
-    /// ちょっとだけ動く
-    /// </summary>
-    ShortMove,
-    /// <summary>
-    /// 動く
-    /// </summary>
-    Move,
-    /// <summary>
-    /// 騒ぐ
-    /// </summary>
-    Clamor,
+    public enum SheepStates
+    {
+        /// <summary>
+        /// 空
+        /// </summary>
+        None,
+        /// <summary>
+        /// 歩き
+        /// </summary>
+        Walk,
+        /// <summary>
+        /// 見つける
+        /// </summary>
+        Found,
+        /// <summary>
+        /// 止まる
+        /// </summary>
+        Stop,
+        /// <summary>
+        /// ちょっとだけ動く
+        /// </summary>
+        ShortMove,
+        /// <summary>
+        /// 動く
+        /// </summary>
+        Move,
+        /// <summary>
+        /// 騒ぐ
+        /// </summary>
+        Clamor,
+    }
 }
 
 
 public class SheepManager : SingletonMonoBehaviour<SheepManager>
 {
+    /// <summary>
+    /// ステータス
+    /// </summary>
+    private SheepStates sheepStates;
+    public SheepStates SheepStates
+    { get => sheepStates; set => sheepStates = value;}
+
     /// <summary>
     /// 羊の歩く速さ
     /// </summary>
@@ -60,4 +72,18 @@ public class SheepManager : SingletonMonoBehaviour<SheepManager>
     private float sheepEscapeSpeed;
     public float SheepEscapeSpeed
     { get=> sheepEscapeSpeed; set => sheepEscapeSpeed = value;}
+
+    /// <summary>
+    /// 罠にかかる
+    /// </summary>
+    [SerializeField]
+    private bool sheepStan;
+    public bool SheepStan
+    { get => sheepStan; set => sheepStan = value;}
+
+    private void Start()
+    {
+        // 状態を歩き状態で初期化
+        sheepStates = SheepStates.Walk;
+    }
 }
