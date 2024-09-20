@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+//
+// 一旦上書きが機能しないので試行中
+//
+
 /// <summary>
 /// タイマークラス
 /// </summary>
