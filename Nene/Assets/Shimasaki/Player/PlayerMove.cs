@@ -96,13 +96,13 @@ public class PlayerMove : MonoBehaviour
         }
 
         // ˆÚ“®•ûŒü‚ğæ“¾
-        Vector2 moveVector = new(moveDirection.x, moveDirection.z);
+        Vector3 moveVector = moveDirection;
 
         // ˆÚ“®‚µ‚Ä‚¢‚éê‡³‹K‰»‚µ‚Ä
         // ˆÚ“®•ûŒü‚É‘ã“ü
         if(moveDirection != Vector3.zero)
         {
-            playerStatus.MoveVector = moveVector;
+            playerStatus.MoveVector = moveDirection;
         }
 
         // À•W”½‰f
