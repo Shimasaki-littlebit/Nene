@@ -8,11 +8,6 @@ using UnityEngine;
 public class PlayerVoiceKeyInput : MonoBehaviour
 {
     /// <summary>
-    /// 音量取得判定に使う文字
-    /// </summary>
-    private string getVolumeName = "ねえね";
-
-    /// <summary>
     /// ねえねえに使う文字
     /// </summary>
     private string nene = "ねえねえ";
@@ -27,11 +22,6 @@ public class PlayerVoiceKeyInput : MonoBehaviour
     /// </summary>
     private VoiceInputVolume inputVolume;
 
-    /// <summary>
-    /// 取得ボリューム
-    /// </summary>
-    private int volumeValue;
-
     // Start is called before the first frame update
     private void Start()
     {
@@ -40,9 +30,6 @@ public class PlayerVoiceKeyInput : MonoBehaviour
 
         // 初期化
         myKeyRecog = new();
-
-        // 音量判定追加
-        //myKeyRecog.Add(getVolumeName, GetVolume);
 
         // ねえねえのキーワードと行動を追加
         myKeyRecog.Add(nene, NeneSkill);
@@ -53,21 +40,11 @@ public class PlayerVoiceKeyInput : MonoBehaviour
     }
 
     /// <summary>
-    /// 音量判定
-    /// </summary>
-    private void GetVolume()
-    {
-        volumeValue = inputVolume.VolumeRate;
-
-        Debug.Log(volumeValue);
-    }
-
-    /// <summary>
     /// ねえねえのスキル処理
     /// </summary>
     private void NeneSkill()
     {
-
+        
 
         Debug.Log("ねえねえ検知" + inputVolume.GetMaxLastVolume());
     }

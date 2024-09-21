@@ -29,7 +29,7 @@ public class TestMoveVector : MonoBehaviour
         var localPos = transform.localPosition;
 
         localPos.x = playerStatus.MoveVector.x;
-        localPos.z = playerStatus.MoveVector.y;
+        localPos.z = playerStatus.MoveVector.z;
 
         transform.localPosition = localPos;
     }
