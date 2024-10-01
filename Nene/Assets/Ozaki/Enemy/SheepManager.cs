@@ -81,6 +81,13 @@ public class SheepManager : SingletonMonoBehaviour<SheepManager>
     public bool SheepStan
     { get => sheepStan; set => sheepStan = value;}
 
+    /// <summary>
+    /// ~‚Ü‚éŠÔ
+    /// </summary>
+    [SerializeField]
+    private float stopTime;
+    public float StopTime
+    {get => stopTime; set => stopTime = value;}
     private void Start()
     {
         // ó‘Ô‚ğ•à‚«ó‘Ô‚Å‰Šú‰»
